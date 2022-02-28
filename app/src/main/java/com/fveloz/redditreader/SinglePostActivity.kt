@@ -68,7 +68,7 @@ class SinglePostActivity : AppCompatActivity() {
                 when (it) {
                     is ResultState.Empty ->{
                         binding.textEmpty.isVisible = true
-                        binding.recyclerView.isVisible = true
+                        binding.recyclerView.isVisible = false
                     }
                     is  ResultState.Error ->{
                         binding.textEmpty.text = it.message

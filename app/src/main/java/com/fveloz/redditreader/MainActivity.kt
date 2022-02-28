@@ -2,7 +2,9 @@ package com.fveloz.redditreader
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -26,30 +28,33 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 
 @ExperimentalCoroutinesApi
-class MainPageActivity : AppCompatActivity(), BasicUIObserver<Post> {
+class MainActivity : AppCompatActivity(), BasicUIObserver<Post> {
 
 
     private var _binding: ActivityRecyclerBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter : PostsAdapter
     private val viewModel: GeneralViewModel by viewModels()
+    private lateinit var prefs: SharedPreferences
 
     private var postList: ArrayList<Post> = arrayListOf()
     private var endpoint = "new"
-    private var subreddit = ReaderApplication.getSubredditName()
+    private lateinit var subreddit: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityRecyclerBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        prefs = PreferenceManager.getDefaultSharedPreferences(this@MainActivity)
+        subreddit = prefs.getString("subreddit", ReaderApplication.getSubredditName())!!
 
-        adapter = PostsAdapter(postList, this@MainPageActivity)
-        binding.recyclerView.layoutManager = LinearLayoutManager(this@MainPageActivity)
+        adapter = PostsAdapter(postList, this@MainActivity)
+        binding.recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
         binding.recyclerView.adapter = adapter
 
         binding.swipeRefreshLayout.setOnRefreshListener {
-            if (!NetworkUtils.isConnected(this@MainPageActivity)) {
-                Toast.makeText(this@MainPageActivity, R.string.no_connection, Toast.LENGTH_LONG).show()
+            if (!NetworkUtils.isConnected(this@MainActivity)) {
+                Toast.makeText(this@MainActivity, R.string.no_connection, Toast.LENGTH_LONG).show()
                 binding.swipeRefreshLayout.isRefreshing = false
             } else {
                 binding.swipeRefreshLayout.isRefreshing = true
@@ -67,6 +72,7 @@ class MainPageActivity : AppCompatActivity(), BasicUIObserver<Post> {
             viewModel.postList.collect {
                 binding.swipeRefreshLayout.isRefreshing = false
                 if (it.size > 0) {
+                    prefs.edit().putString("subreddit", subreddit).apply()
                     postList = it
                     adapter.setData(postList)
                 }
@@ -79,7 +85,7 @@ class MainPageActivity : AppCompatActivity(), BasicUIObserver<Post> {
                     is ResultState.Empty ->{
                         binding.textEmpty.text = resources.getString(R.string.no_data)
                         binding.layEmpty.isVisible = true
-                        binding.swipeRefreshLayout.isVisible = true
+                        binding.swipeRefreshLayout.isVisible = false
                     }
                     is  ResultState.Error ->{
                         binding.textEmpty.text = it.message
@@ -104,7 +110,7 @@ class MainPageActivity : AppCompatActivity(), BasicUIObserver<Post> {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.menuChange) {
-            val builder = AlertDialog.Builder(this@MainPageActivity)
+            val builder = AlertDialog.Builder(this@MainActivity)
             val inflater = layoutInflater
             builder.setTitle(R.string.subreddit_edit)
             val dialogLayout = inflater.inflate(R.layout.alert_subreddit, null)
@@ -119,7 +125,7 @@ class MainPageActivity : AppCompatActivity(), BasicUIObserver<Post> {
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()
-                    Toast.makeText(this@MainPageActivity, R.string.general_error, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity, R.string.general_error, Toast.LENGTH_SHORT).show()
                 }
             }
             builder.setNegativeButton(R.string.cancel) { dialog, _ -> dialog.dismiss() }
@@ -135,7 +141,7 @@ class MainPageActivity : AppCompatActivity(), BasicUIObserver<Post> {
     }
 
     override fun onElementClicked(post: Post) {
-        val i = Intent(this@MainPageActivity, SinglePostActivity::class.java)
+        val i = Intent(this@MainActivity, SinglePostActivity::class.java)
         i.putExtra("data", Gson().toJson(post))
         startActivity(i)
     }
@@ -147,7 +153,7 @@ class MainPageActivity : AppCompatActivity(), BasicUIObserver<Post> {
         sendIntent.type = "text/plain"
         startActivity(Intent.createChooser(sendIntent, getString(R.string.share)))
 
-        val animation = AnimationUtils.loadAnimation(this@MainPageActivity, R.anim.alpha)
+        val animation = AnimationUtils.loadAnimation(this@MainActivity, R.anim.alpha)
         view.startAnimation(animation)
     }
 
@@ -156,8 +162,8 @@ class MainPageActivity : AppCompatActivity(), BasicUIObserver<Post> {
     }
 
     override fun onApproachingEnd() {
-        if (!NetworkUtils.isConnected(this@MainPageActivity)) {
-            Toast.makeText(this@MainPageActivity, R.string.no_connection, Toast.LENGTH_LONG).show()
+        if (!NetworkUtils.isConnected(this@MainActivity)) {
+            Toast.makeText(this@MainActivity, R.string.no_connection, Toast.LENGTH_LONG).show()
         } else viewModel.getPostsByReddit(subreddit, endpoint, postList[postList.size - 1].id)
     }
 }

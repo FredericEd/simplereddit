@@ -3,7 +3,7 @@
     <string name="general_error">Something went wrong. Try again later.</string>
     <string name="no_connection">You are not connected to the internet. Check your connection.</string>
     <string name="share">Share Reddit post to…</string>
-    <string name="no_data">No data to show.</string>
+    <string name="no_data">The parameters didn\'t return any result. Try changing the subreddit name.</string>
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
 

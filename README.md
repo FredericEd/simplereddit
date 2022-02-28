@@ -1,0 +1,5 @@
+A simple Android application written in Kotlin that gets posts from the Reddit API.
+
+It brings posts from the "CrazyIdeas" subreddit, but the subreddit can be changed by clicking on the settings button on the toolbar and it saves your selection for the next time the app is opened. Additionally, the toolbar has two more buttons to change between the "new" and "hot" feeds. Posts can be shared to social networks, the feed has pagination and swipe to refresh. Once a post is clicked, it opens up in a new activity and shows one level of comments.
+
+The app follows the MVVM architecture, uses Volley for the API requests, uses coroutines for network requests, uses StateFlow to store the state, checks whether the user has an active internet connection and uses SharedPreferences to store the selected subreddit.

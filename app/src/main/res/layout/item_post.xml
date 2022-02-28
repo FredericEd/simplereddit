@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:maxLines="2"
                 android:ellipsize="end"
-                android:textColor="@color/textColor"
+                android:textColor="?android:textColorPrimary"
                 android:paddingVertical="5dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textStyle="bold" />
@@ -62,7 +62,7 @@
                 android:id="@+id/textContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/textColor"
+                android:textColor="?android:textColorPrimary"
                 android:maxLines="4"
                 android:ellipsize="end" />
 
@@ -84,7 +84,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="10dp"
-                    android:textColor="@color/textColor"
+                    android:textColor="?android:textColorPrimary"
                     android:layout_marginStart="5dp" />
 
                 <ImageView
@@ -99,7 +99,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:textColor="@color/textColor"
+                    android:textColor="?android:textColorPrimary"
                     android:layout_marginEnd="10dp"
                     android:layout_marginStart="5dp" />
 
@@ -115,14 +115,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:textColor="@color/textColor"
+                    android:textColor="?android:textColorPrimary"
                     android:layout_marginStart="5dp"
                     android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/imgShare"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_gravity="center_vertical"
                     android:src="@android:drawable/ic_menu_share"
                     android:background="?attr/selectableItemBackgroundBorderless"

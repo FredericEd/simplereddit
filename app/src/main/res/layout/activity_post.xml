@@ -42,7 +42,7 @@
                             android:id="@+id/textAuthor"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/textColor"
+                            android:textColor="?android:textColorPrimary"
                             android:textAppearance="@style/TextAppearance.AppCompat.Small"
                             android:layout_weight="1"
                             android:layout_marginEnd="10dp"/>
@@ -59,7 +59,7 @@
                         android:id="@+id/textTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/textColor"
+                        android:textColor="?android:textColorPrimary"
                         android:paddingVertical="5dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textStyle="bold" />
@@ -68,7 +68,7 @@
                         android:id="@+id/textContent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/textColor" />
+                        android:textColor="?android:textColorPrimary" />
 
                     <Button
                         android:id="@+id/btnBrowser"
@@ -98,7 +98,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_marginEnd="10dp"
-                            android:textColor="@color/textColor"
+                            android:textColor="?android:textColorPrimary"
                             android:layout_marginStart="5dp" />
 
                         <ImageView
@@ -113,7 +113,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:textColor="@color/textColor"
+                            android:textColor="?android:textColorPrimary"
                             android:layout_weight="1"
                             android:layout_marginEnd="10dp"
                             android:layout_marginStart="5dp" />
@@ -121,8 +121,8 @@
 
                         <ImageView
                             android:id="@+id/imgShare"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_gravity="center_vertical"
                             android:src="@android:drawable/ic_menu_share"
                             android:background="?attr/selectableItemBackgroundBorderless"

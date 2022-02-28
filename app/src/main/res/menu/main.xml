@@ -5,7 +5,6 @@
     <item
         android:id="@+id/menuNew"
         android:icon="@drawable/newic"
-        android:iconTint="@color/textColor"
         android:orderInCategory="100"
         android:title=""
         app:showAsAction="always" />
@@ -13,7 +12,6 @@
     <item
         android:id="@+id/menuHot"
         android:icon="@drawable/hot"
-        android:iconTint="@color/textColor"
         android:orderInCategory="100"
         android:title=""
         app:showAsAction="always" />
@@ -21,7 +19,6 @@
     <item
         android:id="@+id/menuChange"
         android:icon="@android:drawable/ic_menu_manage"
-        android:iconTint="@color/textColor"
         android:orderInCategory="100"
         android:title=""
         app:showAsAction="always" />

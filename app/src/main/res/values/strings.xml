@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">RedditReader</string>
+    <string name="general_error">Something went wrong. Try again later.</string>
+    <string name="no_connection">You are not connected to the internet. Check your connection.</string>
+    <string name="share">Share Reddit post to…</string>
+    <string name="no_data">No data to show.</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+
+    <string name="subreddit_edit">Change the feed\'s subreddit:</string>
+    <string name="browser">Open external link</string>
+    <string name="comments">Comments</string>
+    <string name="comments_empty">No comments to show.</string>
+    <string name="posted">Posted by</string>
+</resources>

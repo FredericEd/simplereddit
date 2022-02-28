@@ -66,6 +66,8 @@ class MainActivity : AppCompatActivity(), BasicUIObserver<Post> {
             viewModel.isLoading.collect{
                 binding.progressView.isVisible = it
                 binding.contentView.isVisible = !it
+                if (!it)
+                    binding.swipeRefreshLayout.isRefreshing = false
             }
         }
         lifecycleScope.launchWhenStarted {
